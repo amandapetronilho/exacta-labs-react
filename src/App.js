@@ -1,5 +1,19 @@
+import { useState } from "react";
+import Input from "./components/Input"
+
+
 function App() {
-  return <div>Amanda Souza</div>;
+  const [value, setValue] = useState("");
+
+  function onChange(event) {
+    setValue(event.target.value)
+  }
+
+  return (
+    <div>
+      <Input value={value} onChange={onChange} />
+    </div>
+  );
 }
 
 export default App;
