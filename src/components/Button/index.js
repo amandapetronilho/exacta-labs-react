@@ -1,7 +1,7 @@
-import "./styles.css";
+import * as S from "./styles.js";
 
 function Button ({ onClick, children }) {
-    return <button onClick={onClick}>{children}</button>;
+    return <S.Button onClick={onClick}>{children}</S.Button>
 }
 
 export default Button;
