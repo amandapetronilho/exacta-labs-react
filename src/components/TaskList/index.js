@@ -1,11 +1,15 @@
 import * as S from "./styles.js";
 
-function TaskList ({ tasks }) {
+function TaskList ({ tasks, removeTask }) {
     return (
-      <ul>{tasks.map((task, index) => (
-        <li key={index}>{task.text}</li>
+      <S.List>{tasks.map((task, index) => (
+        <S.ListItem key={index}>
+          {task.text}
+
+          <S.DeleteIcon onClick={() => removeTask(task)}/>
+        </S.ListItem>
         ))}
-      </ul>
+      </S.List>
   );
 }
 

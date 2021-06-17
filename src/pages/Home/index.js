@@ -5,29 +5,33 @@ import TaskList from "../../components/TaskList";
 import * as S from "./styles";
 
 function Home() {
-  const [value, setValue] = useState("");
   const [tasks, setTasks] = useState([]);
 
-  function onChange(event) {
-    setValue(event.target.value)
-  }
-
-  function onClick() {
+  function addTask(value) {
     setTasks([
       ...tasks,
       {
         text: value,
       },
     ]);
+  }
 
-    setValue("");
+  function removeTask(task) {
+    const index = tasks.indexOf(task);
+
+    const newTasks = [
+      ...tasks.slice(0, index),
+      ...tasks.slice(index + 1)
+    ];
+
+    setTasks(newTasks);
   }
 
   return (
     <S.Wrapper>
         
-      <TaskForm value={value} onChange={onChange} onClick={onClick} />
-      <TaskList tasks={tasks} />
+      <TaskForm onSubmit={addTask} />
+      <TaskList tasks={tasks} removeTask={removeTask}/>
 
     </S.Wrapper>
   );
