@@ -21,7 +21,7 @@ function TaskForm ({ onSubmit }) {
 
     return (
     <form onSubmit={handleSubmit}>
-      <Input value={value} onChange={onChange} />
+      <Input value={value} onChange={onChange} onCancel={() => setValue("")} />
 
       <Button>Adicionar task</Button>
     </form>
