@@ -1,20 +1,23 @@
-import axios from "axios";
+import { api } from "./api";
 
 export class Tasks {
-  static async getTasks() {
-      const { data } = await axios.get('http://localhost:3001/tasks');
+  static async getTasks(page, limit) {
+      const { data, headers } = await api.get(`tasks?_page=${page}&_limit=${limit}`);
 
-      return data;
+      return {
+        data,
+        total: headers['x-total-count'],
+      };
   }
 
   static async createTask(task) {
-    const { data } = await axios.post('http://localhost:3001/tasks', task);
+    const { data } = await api.post('tasks', task);
 
     return data;
   }
 
   static async deleteTask(id) {
-    const { data } = await axios.delete('http://localhost:3001/tasks/' + id);
+    const { data } = await api.delete('tasks/' + id);
 
     return data;
   }
